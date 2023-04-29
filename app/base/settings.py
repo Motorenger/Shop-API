@@ -24,7 +24,7 @@ INSTALLED_APPS = [
 
     # 3-d Party
     'rest_framework',
-    'rest_framework_simplejwt',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -65,7 +65,7 @@ DATABASES = {
         'NAME': 'motorenger',
         'USER': 'motorenger',
         'PASSWORD': 'motorenger',
-        'HOST': 'db',
+        'HOST': '0.0.0.0',
         'PORT': '5432'
     }
 }
