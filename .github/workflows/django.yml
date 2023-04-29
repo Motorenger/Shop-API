@@ -15,11 +15,11 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: motorenger        
-          POSTGRES_PASSWORD: motorenger
-          POSTGRES_USER: motorenger
+          POSTGRES_DB: ${{ vars.SQL_DATABASE }}      
+          POSTGRES_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+          POSTGRES_USER: ${{ vars.SQL_USER }}
         ports:
-          - 5432:5432
+          - ${{ vars.SQL_PORT }}:${{ vars.SQL_PORT }}
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready

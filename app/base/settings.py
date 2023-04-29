@@ -1,14 +1,13 @@
+import os
 from pathlib import Path
 import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-SECRET_KEY = 'django-insecure-75oyx-*2y3sq#mg0u#zugp*&5fnc^t^y%s*z0q=gwvoa!0=^3$'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = int(os.environ.get('DEBUG', default=0))
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+INTERNAL_IPS = os.environ.get('INTERNAL_IPS').split(' ')
 
 
 INSTALLED_APPS = [
@@ -61,12 +60,12 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'motorenger',
-        'USER': 'motorenger',
-        'PASSWORD': 'motorenger',
-        'HOST': '0.0.0.0',
-        'PORT': '5432'
+        'ENGINE': os.environ.get('SQL_ENGINE'),
+        'NAME': os.environ.get('SQL_DATABASE'),
+        'USER': os.environ.get('SQL_USER'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD'),
+        'HOST': os.environ.get('SQL_HOST'),
+        'PORT': os.environ.get('SQL_PORT'),
     }
 }
 
