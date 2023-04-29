@@ -2,21 +2,21 @@ services:
   app:
     build:
       context: app/.
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver ${HOST}:${PORT}
     volumes:
       - ./app/:/usr/src/app/
     ports:
-      - 8000:8000
-    environment:
-     - DJANGO_SETTINGS_MODULE=base.settings
+      - ${PORT}:${PORT}
+    env_file:
+      - ./.env
     depends_on:
       - db
   db:
     image: postgres:14.4-alpine
     ports:
-      - 5432:5432
+      - ${SQL_PORT}:${SQL_PORT}
     environment:
-      - POSTGRES_USER=motorenger
-      - POSTGRES_PASSWORD=motorenger
-      - POSTGRES_DB=motorenger
-      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_DB=${SQL_DATABASE}
+      - POSTGRES_PORT=${SQL_PORT}
