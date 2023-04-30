@@ -15,7 +15,9 @@ class ProductFootwearSizesInline(admin.StackedInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-
+    list_display = ('title', 'type', 'price', 'in_stock')
+    list_filter = ('type', 'price', 'in_stock')
+    search_fields = ('title',)
     inlines = [
         ProductClothesSizesInline,
         ProductFootwearSizesInline,

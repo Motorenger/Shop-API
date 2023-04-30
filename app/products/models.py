@@ -13,6 +13,7 @@ class Product(models.Model):
 
     title = models.CharField(max_length=255)
     price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    in_stock = models.BooleanField(default=False)
 
     type = models.CharField(max_length=8, choices=ProductTypes.choices)
 
