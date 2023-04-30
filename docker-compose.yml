@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: app
     build:
       context: app/.
     command: python manage.py runserver ${HOST}:${PORT}
@@ -12,6 +13,7 @@ services:
     depends_on:
       - db
   db:
+    container_name: db
     image: postgres:14.4-alpine
     ports:
       - ${SQL_PORT}:${SQL_PORT}
