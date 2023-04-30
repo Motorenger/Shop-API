@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import datetime
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -20,10 +21,12 @@ INSTALLED_APPS = [
 
     # Local
     'users.apps.UsersConfig',
+    'products.apps.ProductsConfig',
 
     # 3-d Party
     'rest_framework',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'djmoney',
 ]
 
 MIDDLEWARE = [
@@ -101,15 +104,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-# REST_FRAMEWORK = {
+REST_FRAMEWORK = {
 
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': (
 
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated',
-#     ]
-
-# }
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 40
+}
