@@ -16,7 +16,7 @@ class TestProductsListView:
         assert response.json().get('results') == []
 
     def test_get_one_products(self, api_client, baker):
-        product = baker.make(Product)
+        baker.make(Product)
         response = api_client.get(reverse('products:list'))
 
         assert response.status_code == 200
