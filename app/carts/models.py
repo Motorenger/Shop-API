@@ -43,7 +43,7 @@ class CartProductM2M(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     size = models.CharField(max_length=6, choices=Sizes.choices)
-    price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD', default=0)
 
     class Meta:
         verbose_name = _("Product")
@@ -51,3 +51,11 @@ class CartProductM2M(models.Model):
 
     def __str__(self):
         return self.product.title
+
+    def save(self, *args, **kwargs):
+        new_price = self.product.price * self.quantity
+        self.cart.total -= self.price
+        self.cart.total += new_price
+        self.cart.save()
+        self.price = new_price
+        super(CartProductM2M, self).save(*args, **kwargs)
