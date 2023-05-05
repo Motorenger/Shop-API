@@ -22,11 +22,13 @@ INSTALLED_APPS = [
     # Local
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
+    'carts.apps.CartsConfig',
 
     # 3-d Party
     'rest_framework',
     'rest_framework_simplejwt',
     'djmoney',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -37,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'base.middlewares.CartMiddleware'
 ]
 
 ROOT_URLCONF = 'base.urls'
@@ -97,8 +100,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -113,3 +116,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 40
 }
+
+SESSION_SAVE_EVERY_REQUEST = True

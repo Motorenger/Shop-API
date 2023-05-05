@@ -18,14 +18,14 @@ class Product(models.Model):
     type = models.CharField(max_length=8, choices=ProductTypes.choices)
 
     class Meta:
-        verbose_name = _("Product")
-        verbose_name_plural = _("Products")
+        verbose_name = _('Product')
+        verbose_name_plural = _('Products')
 
     def __str__(self):
         return self.title
 
     def retrieve_url(self):
-        return reverse("products:retrieve", kwargs={"pk": self.pk})
+        return reverse('products:retrieve', kwargs={'pk': self.pk})
 
 
 class ClothesSize(models.Model):
