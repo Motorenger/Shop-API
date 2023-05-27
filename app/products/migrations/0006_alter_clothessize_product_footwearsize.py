@@ -7,22 +7,54 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0005_alter_product_type'),
+        ("products", "0005_alter_product_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='clothessize',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='clothes_sizes', to='products.product'),
+            model_name="clothessize",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="clothes_sizes",
+                to="products.product",
+            ),
         ),
         migrations.CreateModel(
-            name='FootwearSize',
+            name="FootwearSize",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('size', models.IntegerField(choices=[(6, 'Six'), (7, 'Seven'), (8, 'Eight'), (9, 'Nine'), (10, 'Ten'), (11, 'Eleven'), (12, 'Twelve')])),
-                ('quantity', models.IntegerField(default=1)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='footwear_sizes', to='products.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "size",
+                    models.IntegerField(
+                        choices=[
+                            (6, "Six"),
+                            (7, "Seven"),
+                            (8, "Eight"),
+                            (9, "Nine"),
+                            (10, "Ten"),
+                            (11, "Eleven"),
+                            (12, "Twelve"),
+                        ]
+                    ),
+                ),
+                ("quantity", models.IntegerField(default=1)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="footwear_sizes",
+                        to="products.product",
+                    ),
+                ),
             ],
         ),
     ]

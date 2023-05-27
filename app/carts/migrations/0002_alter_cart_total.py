@@ -8,13 +8,18 @@ import djmoney.models.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('carts', '0001_initial'),
+        ("carts", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cart',
-            name='total',
-            field=djmoney.models.fields.MoneyField(decimal_places=2, default=Decimal('0'), default_currency='USD', max_digits=10),
+            model_name="cart",
+            name="total",
+            field=djmoney.models.fields.MoneyField(
+                decimal_places=2,
+                default=Decimal("0"),
+                default_currency="USD",
+                max_digits=10,
+            ),
         ),
     ]

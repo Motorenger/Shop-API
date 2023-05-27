@@ -7,22 +7,55 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0002_product_type'),
+        ("products", "0002_product_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='type',
-            field=models.CharField(choices=[('clothes', 'Clothes'), ('footwear', 'Footwear')], default='clothes', editable=False, max_length=8),
+            model_name="product",
+            name="type",
+            field=models.CharField(
+                choices=[("clothes", "Clothes"), ("footwear", "Footwear")],
+                default="clothes",
+                editable=False,
+                max_length=8,
+            ),
         ),
         migrations.CreateModel(
-            name='ClothesSize',
+            name="ClothesSize",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('size', models.CharField(choices=[('xs', 'XS'), ('s', 'S'), ('m', 'M'), ('l', 'L'), ('xl', 'XL'), ('xxl', 'XXL')], max_length=4)),
-                ('quantity', models.IntegerField(default=1)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sizes', to='products.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "size",
+                    models.CharField(
+                        choices=[
+                            ("xs", "XS"),
+                            ("s", "S"),
+                            ("m", "M"),
+                            ("l", "L"),
+                            ("xl", "XL"),
+                            ("xxl", "XXL"),
+                        ],
+                        max_length=4,
+                    ),
+                ),
+                ("quantity", models.IntegerField(default=1)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sizes",
+                        to="products.product",
+                    ),
+                ),
             ],
         ),
     ]
