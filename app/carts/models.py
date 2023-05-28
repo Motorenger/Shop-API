@@ -5,6 +5,7 @@ from django.utils.translation import gettext as _
 from djmoney.models.fields import MoneyField
 
 from products.models import Product
+from carts.decorators import update_cart_total
 
 
 class Cart(models.Model):
@@ -65,8 +66,9 @@ class CartProductM2M(models.Model):
     def __str__(self):
         return self.product.title
 
+    @update_cart_total
     def save(self, *args, **kwargs):
         new_price = self.product.price * self.quantity
-        self.cart.save()
         self.price = new_price
+
         super(CartProductM2M, self).save(*args, **kwargs)
