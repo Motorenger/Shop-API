@@ -4,10 +4,8 @@ from django.urls import path, include
 
 urlpatterns = [
     # Products
-    path('products/', include('products.urls')),
-
+    path("products/", include("products.urls")),
     # Auth
-    path('auth/', include('users.urls')),
-
-    path('admin/', admin.site.urls),
+    path("auth/", include("users.urls")),
+    path("admin/", admin.site.urls),
 ]

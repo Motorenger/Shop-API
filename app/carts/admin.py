@@ -9,9 +9,7 @@ class CartProductInline(admin.TabularInline):
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    inlines = [
-        CartProductInline
-    ]
+    inlines = [CartProductInline]
 
 
 admin.site.register(CartProductM2M)

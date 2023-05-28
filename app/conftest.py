@@ -15,17 +15,17 @@ def api_client():
 @pytest.fixture
 def user_registration_data():
     return {
-            'email': 'user_email@email.com',
-            'password': 'user_password',
-            'password2': 'user_password'
-        }
+        "email": "user_email@email.com",
+        "password": "user_password",
+        "password2": "user_password",
+    }
 
 
 def price():
-    return Money(amount=645, currency='USD')
+    return Money(amount=645, currency="USD")
 
 
 @pytest.fixture
 def baker():
-    model_baker.generators.add('djmoney.models.fields.MoneyField', price)
+    model_baker.generators.add("djmoney.models.fields.MoneyField", price)
     return model_baker
