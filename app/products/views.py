@@ -7,6 +7,7 @@ from products.models import Product
 from products.serializers import ProductSerializer, AddToCartSerializer
 from carts.models import CartProductM2M
 from products.utills import get_cart, get_product
+from products.services.view_logics import add_to_cart_logic
 
 
 class ProductListView(generics.ListAPIView):
@@ -30,14 +31,8 @@ class AddToCartView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         cart = get_cart(request=request)
         size = request.data.get("size")
-        try:
-            product_in_cart = CartProductM2M.objects.get(cart=cart, size=size)
-        except CartProductM2M.DoesNotExist:
-            product_in_cart = None
-        if product_in_cart:
-            product_in_cart.quantity += 1
-            product_in_cart.save()
-        else:
-            CartProductM2M.objects.create(product=get_product(product_id=kwargs.get("pk")), cart=cart, size=size)
+        product = get_product(product_id=kwargs.get("pk"))
+
+        add_to_cart_logic(product=product, cart=cart, size=size)
 
         return Response(status=status.HTTP_201_CREATED)
