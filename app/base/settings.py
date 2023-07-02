@@ -113,4 +113,8 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 40,
 }
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=60),
+}
+
 SESSION_SAVE_EVERY_REQUEST = True
